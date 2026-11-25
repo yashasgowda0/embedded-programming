@@ -1,0 +1,57 @@
+
+//transmiteer
+#include"main.h"
+#include<string.h>
+I2C_HandleTypeDef I2C1;
+
+int main(void)
+{
+HAL_Init();
+SystemClock_Config();
+
+MX_GPIO_Init();
+MX_I2C1_Init();
+ 
+char message[] = "temperature = 45 degree\r\n";
+char message1[] = "humidity = 30 \r\n";
+char message2[] = "soil moisture = 20\r\n";
+
+while(1)
+{
+HAL_I2C_Transmit(&hI2C1,(uint8_t*)message,strlen(message),100);
+HAL_I2C_Transmit(&hI2C1,(uint8_t*)message2,strlen(message1),100);
+HAL_I2C_Transmit(&hI2C1,(uint8_t*)message1,strlen(message2),100);
+
+HAL_Delay(1000);
+}
+return 0;
+}
+
+
+//recicever
+
+#include "main.h"
+#include<string.h>
+
+int main(void)
+{
+HAL_Init();
+SystemClock_config();
+
+MX_GPIO_Init();
+MX_I2C_Iint():
+
+while(1)
+{
+HAL_I2C_Read(&hI2C1,0xA0,0x00,I2C_MEMADD_size_S8IT,&recived_data,1,100);
+HAL_I2C_Read(&hI2C1,0xA0,0x00,I2C_MEMADD_size_S8IT,&recived_data,1,100);
+HAL_I2C_Read(&hI2C1,0xA0,0x00,I2C_MEMADD_size_S8IT,&recived_data,1,100);
+
+HAL_Delay(1000);
+}
+}
+
+
+
+
+
